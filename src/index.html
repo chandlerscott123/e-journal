@@ -4,6 +4,53 @@
 <title>E-Journal</title>
 </head>
 <body>
-No content yet
-</body>
+  
+  <div class="container-fluid">
+    <div class="row content">
+      <div class="col-sm-3 sidenav">
+        <h4>E-Journal</h4>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search Blog..">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+
+      <div id="entry-list" class="col-sm-9">
+        <h4><small>RECENT POSTS</small></h4>
+        <hr>
+        <div class="entry-item">
+            <h2 class="entry-title">Sample Text</h2>
+            <h5 class="entry-date"> <span class="glyphicon glyphicon-time"></span> Sep 27, 2015</h5>
+            <p class="entry-preview">preview text ... <strong><span>See more</span></strong></p>
+            <br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr></hr>
+
+    <div class="container-fluid">
+      <div class="jumbotron">
+        <h2>Add a New Entry</h2>
+        <p>
+          Your E-Journal is a place where you can reflect
+          on your day.
+        </p>
+        <form id="entry">
+          <label for="entry-title">Entry Title:</label>
+          <input type="text" id="entry-title">
+          <br>
+          <br>
+          <label for="entry-text">Text:</label>
+          <textarea class="form-control" rows="10" id="entry-text" placeholder="Tell me about your day!"></textarea>
+          <br><button type="submit" class="btn-primary" id="entry-submit">Save Entry</button>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
