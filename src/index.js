@@ -28,16 +28,19 @@ function listEntries(journalToDisplay){
     preview = document.createElement("p");
     preview.append(entry.preview());
 
-    seeMore=document.createElement("span");
-    emphasis=document.createElement("strong");
+    seeMore = document.createElement("span");
+    seeMore.classList.add("expand"); // Add the "expand" class instead of an id
+    emphasis = document.createElement("strong");
     seeMore.append(emphasis);
-    seeMore.append("....... See More");
+    seeMore.append("See More");
+    
 
     newEntryDiv.append(titleHead);
     newEntryDiv.append(dateHead);
     newEntryDiv.append(preview);
     newEntryDiv.append(seeMore);
     idText = "entry"+entry.id;
+    console.log("ID: "+ idText);
     newEntryDiv.setAttribute("id", idText);
     entryListDiv.prepend(newEntryDiv);
 
@@ -47,16 +50,29 @@ function listEntries(journalToDisplay){
   
 }
 
-function displayFullEntry(event){
 
-  //show full text when user clicks "see more"
-  if (event.target.tagName === 'SPAN' && event.target.id === 'expand') {
-    const entryItemDiv = event.target.closest('.entry-item');
+function displayFullEntry(event) {
+  const target = event.target;
+
+  // Check if the clicked target has the "expand" class
+  if (target.classList.contains('expand')) {
+    const entryItemDiv = target.closest('.entry-item');
     const entryId = entryItemDiv.id.replace('entry', '');
     const toDisplay = journal.findEntry(entryId);
-    entryItemDiv.querySelector("p").innerText = toDisplay.getText();
+
+    if (toDisplay) {
+      const previewText = entryItemDiv.querySelector('p');
+
+      // Toggle the full text or preview text based on the current content
+      if (previewText.innerText === toDisplay.preview()) {
+        previewText.innerText = toDisplay.getText();
+      } else {
+        previewText.innerText = toDisplay.preview();
+      }
+    }
   }
 }
+
 
 function addEntry(title, text){
 
@@ -83,5 +99,5 @@ function handleEntryForm(event){
 //event listeners added on page load
 window.addEventListener("load", function() {
   document.querySelector("form#entry").addEventListener("submit", handleEntryForm);
-  document.querySelector("span#expand").addEventListener("click", displayFullEntry);
+  document.querySelector("div#entry-list").addEventListener("click", displayFullEntry);
 });

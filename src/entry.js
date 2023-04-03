@@ -23,7 +23,7 @@ Entry.prototype.getText =function(){
 
 Entry.prototype.getTitle = function(){
   return this.title;
-}
+};
 
 
 
@@ -44,7 +44,7 @@ Entry.prototype.vowelCount =  function(){
 
   return matches ? matches.length : 0; 
 
-}
+};
 
 Entry.prototype.consonantCount =  function(){
   //removes non-alphanum characters and vowels from entry
@@ -53,7 +53,7 @@ Entry.prototype.consonantCount =  function(){
   
   //returns new length
   return consonantStr.length;
-}
+};
 
 
 Entry.prototype.preview =  function(){
@@ -61,7 +61,7 @@ Entry.prototype.preview =  function(){
   const firstEightWords = this.text.match(/(?:\w+\W+){0,7}\w+/);
   return firstEightWords ? firstEightWords[0] : "";
 
-}
+};
 
 //in lieu of a database, key-val pairs of entry objects
 export function Journal()
@@ -81,24 +81,24 @@ Journal.prototype.addEntry= function(entry){
   entry.id = this.assignId();
   this.entries[entry.id] = entry;
   
-}
+};
 
 
 //returns entry object with matching id by accessing entries in Journal
 Journal.prototype.findEntry = function(id){
-  if(this.entry[id]!==undefined){
-    return this.entry[id];
+  if(this.entries[id]!==undefined){
+    return this.entries[id];
   }
   return false;
-}
+};
 
 
 //
 Journal.prototype.deleteEntry = function(id){
-  if (this.entry[id]===undefined){
+  if (this.entries[id]===undefined){
     return false;
   }
   delete this.entries[id];
   return true;
-}
+};
 
